@@ -1,0 +1,8 @@
+{
+  "tasks": {
+    "start": "deno run --allow-read --inspect days/$DAY/run.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
