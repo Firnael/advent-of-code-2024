@@ -7,7 +7,7 @@ const t0 = performance.now();
 const sample = await Deno.readTextFile(path.resolve('data', 'sample.txt'));
 const input = await Deno.readTextFile(path.resolve('data', 'input.txt'));
 
-const grid = utils.toGrid(sample);
+const grid = utils.toGrid(input);
 utils.printGrid(grid);
 
 // create mapping "char -> every positions of the char"
@@ -105,7 +105,32 @@ function getAntinodes(pair: number[][], grid: string[][], part: number): Array<n
     } else {
         // part 2
         const positions = [];
-        // TODO
+        const diSign = a[0] < b[0] ? 1 : -1;
+        const djSign = a[1] < b[1] ? 1 : -1;
+
+        let aDone = false;
+        let bDone = false;
+        let count = 0;
+        while (!aDone || !bDone) {
+            count++;
+            if (!aDone) {
+                const na = [a[0] + di * diSign * count, a[1] + dj * djSign * count];
+                if (na[0] >= 0 && na[0] < gridHeight && na[1] >= 0 && na[1] < gridWidth) {
+                    positions.push(na);
+                } else {
+                    aDone = true;
+                }
+            }
+            
+            if (!bDone) {
+                const nb = [b[0] + di * -diSign * count, b[1] + dj * -djSign * count];
+                if (nb[0] >= 0 && nb[0] < gridHeight && nb[1] >= 0 && nb[1] < gridWidth) {
+                    positions.push(nb);
+                } else {
+                    bDone = true;
+                }
+            }
+        }
         antinodes.push(...positions);
     }
 

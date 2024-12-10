@@ -9,3 +9,4 @@ DAY=X deno run start
 ## Times
 
 - Day 9 : 7248.402333 milliseconds.
+- Day 10 : 7.8515 milliseconds.
