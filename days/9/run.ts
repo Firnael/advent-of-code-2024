@@ -24,8 +24,8 @@ input.split('').forEach((c) => {
     }
     blank = !blank;
 });
-console.log(sequence.join(''));
-// copy this for part 2
+
+// keep a copy of this for part 2...
 const sequence2 = [...sequence];
 
 /* Part 1 */
@@ -61,15 +61,10 @@ console.log('Part 1:', sum);
 let readingIndex = sequence2.length - 1;
 while(readingIndex > 0) {
     const last = sequence2[readingIndex];
-    
     if (last === '.') {
         readingIndex--;
         continue;
     }
-
-    // start    : 00...111...2...333.44.5555.6666.777.888899 
-    // expected : 00992111777.44.333....5555.6666.....8888..
-    // actual   : 00992111777.44.333....5555.6666.....8888..
 
     let stop = false;
     let length = 1;
@@ -94,7 +89,7 @@ while(readingIndex > 0) {
     }
     readingIndex = internalIndex;
 }
-// concat left and right block (watch out : right block needs to be reversed since we pushed at the end of it)
+
 console.log(sequence2.join(''));
 
 // compute result

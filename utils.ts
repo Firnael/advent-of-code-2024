@@ -18,6 +18,41 @@ function printGrid(grid: string[][]) {
     }
 }
 
+function findInGrid(grid: string[][], char: string): number[][] {
+    const results = [];
+    for (let i = 0; i < grid.length; i++) {
+        for (let j = 0; j < grid[i].length; j++) {
+            if (grid[i][j] === char) {
+                results.push([i, j]);
+            }
+        }
+    }
+    return results;
+}
+
+function checkAroundOrtho(grid: string[][], i: number, j: number, char: string): number[][] {
+    const results = [];
+    if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length) {
+        console.log(`Out of grid bounds at (${i}, ${j})`);
+        return [];
+    }
+
+    if (i - 1 >= 0 && grid[i - 1][j] === char) { // up
+        results.push([i - 1, j]);
+    }
+    if (i + 1 < grid.length && grid[i + 1][j] === char) { // down
+        results.push([i + 1, j]);
+    }
+    if (j - 1 >= 0 && grid[i][j - 1] === char) { // left
+        results.push([i, j - 1]);
+    }
+    if (j + 1 < grid[i].length && grid[i][j + 1] === char) { // right
+        results.push([i, j + 1]);
+    }
+
+    return results;
+}
+
 function checkAround(grid: string[][], i: number, j: number, char: string) {
     const results = [];
     if (i < 0 || j < 0 || i >= grid.length || j >= grid[i].length) {
@@ -92,6 +127,8 @@ export default {
     toGrid,
     printGrid,
     checkAround,
+    checkAroundOrtho,
     checkInDirection,
     getInDirection,
+    findInGrid
 };
