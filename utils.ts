@@ -123,6 +123,20 @@ function isInGridBounds(i: number, j: number, grid: string[][]): boolean {
     return false;
 }
 
+/**
+ * From [1, 2, 3, 4] and length 2,
+ * returns [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+ */
+function getCombinations(nodes: number[][], length: number): number[][][] {
+    const results: number[][][] = [];
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            results.push([nodes[i], nodes[j]]);
+        }
+    }
+    return results;
+}
+
 export default {
     toGrid,
     printGrid,
@@ -130,5 +144,6 @@ export default {
     checkAroundOrtho,
     checkInDirection,
     getInDirection,
+    getCombinations,
     findInGrid
 };
